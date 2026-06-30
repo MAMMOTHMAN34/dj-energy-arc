@@ -1,7 +1,7 @@
 """Interactive set explorer (Streamlit).
 
 App allows users to pick a set, see its energy arc and the vibe journey underneath it, then play with the recommender
-for song suggestions.
+for vibe/song suggestions.
 
 Everything runs off the artifacts the earlier stages already produced
 (data/processed/vibes.parquet and outputs/lstm.pt), so it loads instantly and
@@ -12,8 +12,15 @@ Run:
 """
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
 import plotly.graph_objects as go
 import streamlit as st
+
+# When launched as `streamlit run src/app.py`, only the src/ folder lands on the
+# path, so `import src...` fails. Put the repo root on the path first.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from src.recommend import load_context, predict_next_energy, recommend_next
 

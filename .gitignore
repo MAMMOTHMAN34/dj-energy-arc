@@ -22,3 +22,9 @@ data/processed/*
 # Outputs are regenerated; commit only curated figures I choose to add.
 outputs/*
 !outputs/.gitkeep
+
+# Exception: commit the two small derived artifacts the deployed app needs so it
+# runs on Streamlit Cloud without the raw audio. These are tiny (a feature table
+# and a 75K model), reproducible, and contain no actual music.
+!data/processed/vibes.parquet
+!outputs/lstm.pt
