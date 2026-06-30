@@ -70,8 +70,11 @@ to a late climax, some front-load and sustain, some oscillate throughout.
 
 Clustering windows by their sound alone (no genre labels) gives five clean vibe
 profiles: bright/dark and low/mid/high-energy. 
-It can be seen that different genres clearly prefer different vibes, with techno
+As the heatmap below shows, different genres clearly prefer different vibes, with techno
 leaning bright high-energy and tech-house leaning dark high-energy.
+
+![Do genres land in different vibes?](figures/vibe_genre.png)
+*Each column is a genre and the brighter the cell, the more of that genre's windows fall into that vibe. Since the model never saw these labels, the clear pattern is good evidence the vibes are not arbitrary.*
 
 ![Each set's journey through the vibes](figures/vibe_journey.png)
 
