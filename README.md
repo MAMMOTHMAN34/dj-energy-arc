@@ -53,7 +53,7 @@ small feature tables and figures I make from them, not anyone's actual music.
 | Stage | Module | Status |
 |-------|--------|--------|
 | 0 Acquire | `src/acquire.py` | done |
-| 1 Extract | `src/extract_features.py` | planned |
+| 1 Extract | `src/extract_features.py` | done |
 | 2 Arc | `src/build_arc.py` | planned |
 | 3 Model | `src/train_lstm.py` | planned |
 | 4 Cluster | `src/cluster_vibes.py` | planned |
