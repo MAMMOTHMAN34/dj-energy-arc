@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Audio: never commit the raw sets. They are large and re-fetchable from
+# configs/sets.csv via `python -m src.acquire`. Keep the folders via .gitkeep.
+data/raw/*
+data/interim/*
+data/processed/*
+!data/**/.gitkeep
+
+# Model artifacts are big and reproducible by re-training.
+*.pt
+*.ckpt
+
+# Outputs are regenerated; commit only curated figures I choose to add.
+outputs/*
+!outputs/.gitkeep

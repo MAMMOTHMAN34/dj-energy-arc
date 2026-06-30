@@ -1,0 +1,28 @@
+# Install stays lean and I should understand why every package is here.
+# Grouped by pipeline stage; only Stage 0 is needed to run today.
+
+# --- Stage 0: acquire (download public sets) ---
+yt-dlp>=2024.4        # fetch bestaudio from public set URLs in configs/sets.csv
+PyYAML>=6.0           # read the central configs/config.yaml every stage shares
+# NOTE: yt-dlp also needs the `ffmpeg` binary on PATH (brew install ffmpeg) to
+# remux/decode audio. librosa relies on it too for non-wav formats.
+
+# --- Stage 1: feature extraction (librosa DSP) ---
+librosa>=0.10         # tempo/BPM, RMS energy, spectral centroid, chroma, MFCC
+soundfile>=0.12       # fast wav/flac IO backend librosa prefers
+numpy>=1.26           # array maths underneath everything
+pandas>=2.1           # the tidy per-window feature table everything joins on
+pyarrow>=14.0         # Parquet engine: typed, compact interim/processed files
+tqdm>=4.66            # progress bars while extracting across long mixes
+
+# --- Stage 3: sequence model (predict the energy arc) ---
+torch>=2.2            # LSTM that predicts energy at t+1 from past steps
+scikit-learn>=1.4     # scaling, train/val splits, clustering metrics
+
+# --- Stage 4: vibe clustering ---
+# scikit-learn (above) covers KMeans; hdbscan added later if KMeans is too rigid.
+
+# --- Stage 6: app + visualisation ---
+streamlit>=1.33       # the interactive set-explorer front end
+matplotlib>=3.8       # static arc figures for the README
+plotly>=5.20          # interactive arcs inside the Streamlit app

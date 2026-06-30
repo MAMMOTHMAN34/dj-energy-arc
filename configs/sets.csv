@@ -1,0 +1,6 @@
+# One row per public DJ set I want to analyse. `id` becomes the audio filename
+# and the key every feature row is tagged with, so keep it short and unique.
+# `genre_hint` is optional and only used to sanity-check the vibe clusters
+# later; the model never sees it. Fill `url` with a public set link.
+id,artist,event,genre_hint,url
+example01,Artist Name,Example Festival 2023,melodic-house,https://www.youtube.com/watch?v=REPLACE_ME

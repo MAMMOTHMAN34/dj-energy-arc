@@ -1,0 +1,31 @@
+# Central pipeline settings. Every stage reads from here so I tune behaviour in
+# one place rather than hunting for magic numbers scattered across scripts.
+
+paths:
+  raw: data/raw            # downloaded audio (gitignored)
+  interim: data/interim    # per-window feature tables (parquet)
+  processed: data/processed
+  sets: configs/sets.csv   # the list of public sets to fetch + analyse
+
+acquire:
+  # yt-dlp grabs the best audio-only stream, then ffmpeg standardises it.
+  audio_format: m4a        # compact; librosa reads it fine via ffmpeg
+  # Set a sane ceiling so a stray 6-hour stream does not eat the disk.
+  max_duration_minutes: 180
+
+extract:
+  sample_rate: 22050       # librosa default; plenty for energy/spectral work
+  window_seconds: 30       # one feature row per 30s window of the mix
+  hop_seconds: 30          # non-overlapping windows (set < window for overlap)
+
+model:
+  lookback: 6              # predict energy at t+1 from the previous 6 windows
+  hidden_size: 64
+  epochs: 40
+  batch_size: 32
+  learning_rate: 0.001
+  val_fraction: 0.2        # hold out whole mixes, not random windows
+
+cluster:
+  n_vibes: 5               # how many "vibe profiles" to carve the windows into
+  random_state: 42
