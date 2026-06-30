@@ -21,10 +21,22 @@ import yt_dlp
 from src.utils import load_config, resolve
 
 
+# yt-dlp leaves these scratch files behind while a download is in progress. A
+# set is only "already downloaded" if a finished file exists, so I ignore them.
+_PARTIAL_SUFFIXES = (".part", ".ytdl", ".tmp")
+
+
 def _already_have(raw_dir, set_id: str):
-    """Return an existing file for this id, if one is already downloaded."""
-    hits = list(raw_dir.glob(f"{set_id}.*"))
-    return hits[0] if hits else None
+    """Return a *finished* file for this id, ignoring partial/temp downloads.
+
+    This matters after an interrupted run: a leftover `<id>.m4a.part` must not
+    fool the script into thinking the set is complete and skipping it."""
+    for hit in raw_dir.glob(f"{set_id}.*"):
+        if any(part in hit.suffixes or hit.name.endswith(part)
+               for part in _PARTIAL_SUFFIXES):
+            continue
+        return hit
+    return None
 
 
 def acquire() -> None:

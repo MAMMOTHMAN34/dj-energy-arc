@@ -1,4 +1,3 @@
-sets
 # One row per public DJ set I want to analyse. `id` becomes the audio filename,,,,
 # and the key every feature row is tagged with, so keep it short and unique.,,,
 # `genre_hint` is optional and only used to sanity-check the vibe clusters,,,,

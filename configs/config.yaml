@@ -18,6 +18,10 @@ extract:
   window_seconds: 30       # one feature row per 30s window of the mix
   hop_seconds: 30          # non-overlapping windows (set < window for overlap)
 
+arc:
+  smooth_windows: 5        # rolling window (in 30s steps) to smooth each arc
+  grid_points: 100         # shared normalised-time grid for the average-arc plot
+
 model:
   lookback: 6              # predict energy at t+1 from the previous 6 windows
   hidden_size: 64
