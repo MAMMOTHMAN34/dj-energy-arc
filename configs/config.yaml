@@ -33,3 +33,9 @@ model:
 cluster:
   n_vibes: 5               # how many "vibe profiles" to carve the windows into
   random_state: 42
+
+recommend:
+  # How to balance the two halves of a suggestion: realistic sequencing (what
+  # vibe usually follows what) vs hitting the target energy the user asked for.
+  transition_weight: 0.4
+  energy_weight: 0.6
