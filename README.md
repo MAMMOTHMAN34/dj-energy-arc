@@ -50,15 +50,15 @@ small feature tables and figures I make from them, not anyone's actual music.
 
 ## Pipeline
 
-| Stage | Module | Status |
-|-------|--------|--------|
-| 0 Acquire | `src/acquire.py` | done |
-| 1 Extract | `src/extract_features.py` | done |
-| 2 Arc | `src/build_arc.py` | planned |
-| 3 Model | `src/train_lstm.py` | planned |
-| 4 Cluster | `src/cluster_vibes.py` | planned |
-| 5 Recommend | `src/recommend.py` | planned |
-| 6 App | `src/app.py` | planned |
+| Stage | Module |
+|-------|--------|
+| 0 Acquire | `src/acquire.py` |
+| 1 Extract | `src/extract_features.py` |
+| 2 Arc | `src/build_arc.py` |
+| 3 Model | `src/train_lstm.py` |
+| 4 Cluster | `src/cluster_vibes.py` |
+| 5 Recommend | `src/recommend.py` |
+| 6 App | `src/app.py` |
 
 ## Layout
 
