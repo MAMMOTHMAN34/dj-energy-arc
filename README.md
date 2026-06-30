@@ -2,6 +2,8 @@
 
 In my opinion, what makes a DJ set good is how it carries energy, with smooth transitions that keep the crowd moving. This sense of momentum building and easing across a set is what I think of as its energy arc, and this project sets out to measure it directly from the audio, and then teach a model to anticipate where a set is going next.
 
+**[Try the live app here](https://dj-energy-arc.streamlit.app)!** Pick a set, read its energy arc and get a live recommendation for what to play next.
+
 ## Why I built this
 
 I love music, dance music in particular, thus I wanted my next project to be
