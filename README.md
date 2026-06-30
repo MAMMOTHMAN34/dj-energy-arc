@@ -14,19 +14,6 @@ The whole pipeline runs straight off the audio using `librosa`. Spotify used to 
 API, but it closed that to new apps in late 2024. As it happens, all of those
 qualities can be measured from the waveform itself. Working them out from scratch is exactly what I do here.
 
-## Where I want to take this
-
-My longer-term aim is for the model to work across the all genres of EDM,
-from house through to hardstyle and everything in between.
-Different genres carry their energy in different ways, so getting
-it to generalise is a big part of what makes the problem interesting.
-
-Beyond the analysis itself, I would love to turn this into something you could
-use while listening, for example a SoundCloud extension that marks out the
-high-energy moments of a set as you scrub through it. Platforms already do
-something loosely similar with their waveform displays, but the goal here is to
-read the energy arc properly rather than just show how loud the audio is.
-
 ## How it works
 
 I take a handful of public DJ sets and turn each one into a story about its
