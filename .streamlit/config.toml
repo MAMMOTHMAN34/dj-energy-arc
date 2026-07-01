@@ -1,0 +1,9 @@
+# App theme. This styles the built-in widgets (sliders, dropdowns, tabs) so they
+# match the dark, neon look the custom CSS in app.py layers on top.
+[theme]
+base = "dark"
+primaryColor = "#c084fc"
+backgroundColor = "#0a0a12"
+secondaryBackgroundColor = "#161325"
+textColor = "#e8e8f0"
+font = "sans serif"

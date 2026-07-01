@@ -26,6 +26,7 @@ from __future__ import annotations
 import matplotlib
 
 matplotlib.use("Agg")
+import joblib
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -77,9 +78,12 @@ def cluster() -> None:
     sets = pd.read_csv(cfg["paths"]["sets"], comment="#")[["id", "genre_hint"]]
     df = df.merge(sets, left_on="set_id", right_on="id", how="left").drop(columns="id")
 
-    X = StandardScaler().fit_transform(df[CLUSTER_FEATURES])
-    km = KMeans(n_clusters=n_vibes, random_state=seed, n_init=10)
-    df["vibe"] = km.fit_predict(X)
+    # Keep the fitted scaler and KMeans as objects so the app can assign vibes
+    # to a brand new uploaded set using the exact same transform.
+    scaler = StandardScaler().fit(df[CLUSTER_FEATURES])
+    X = scaler.transform(df[CLUSTER_FEATURES])
+    km = KMeans(n_clusters=n_vibes, random_state=seed, n_init=10).fit(X)
+    df["vibe"] = km.predict(X)
 
     # Profile each vibe on interpretable features and give it a name.
     profile = df.groupby("vibe")[
@@ -98,6 +102,13 @@ def cluster() -> None:
 
     out = processed_dir / "vibes.parquet"
     df.to_parquet(out, index=False)
+
+    # Persist the fitted pipeline so the Streamlit app can tag an uploaded set.
+    joblib.dump(
+        {"scaler": scaler, "kmeans": km, "features": list(CLUSTER_FEATURES),
+         "labels": labels},
+        resolve("outputs") / "vibe_model.joblib",
+    )
 
     _plot_profiles(df, labels, fig_dir / "vibe_profiles.png")
     _plot_pca(X, df["vibe"], labels, fig_dir / "vibe_clusters.png")

@@ -18,6 +18,7 @@ tqdm>=4.66            # progress bars while extracting across long mixes
 # --- Stage 3: sequence model (predict the energy arc) ---
 torch>=2.2            # LSTM that predicts energy at t+1 from past steps
 scikit-learn>=1.4     # scaling, train/val splits, clustering metrics
+joblib>=1.3           # persist the fitted scaler + KMeans for the app
 
 # --- Stage 4: vibe clustering ---
 # scikit-learn (above) covers KMeans; hdbscan added later if KMeans is too rigid.

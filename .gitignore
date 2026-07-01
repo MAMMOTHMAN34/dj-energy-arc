@@ -28,3 +28,4 @@ outputs/*
 # and a 75K model), reproducible, and contain no actual music.
 !data/processed/vibes.parquet
 !outputs/lstm.pt
+!outputs/vibe_model.joblib
